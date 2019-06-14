@@ -65,7 +65,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                                 funcionarios.data_nascimento AS data_nascimento,
                                 funcionarios.bi AS bi,
                                 funcionarios.data_admicao AS data_admicao,
-                                funcionarios.funcao AS funcao,
+                                codigo_vencimento.funcao AS funcao,
                                 funcionarios.empresa_idEmpresa AS empresa_idEmpresa,
                                 funcionarios.endereco AS endereco,
                                 funcionarios.email AS email,
@@ -74,6 +74,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                             FROM funcionarios
                             JOIN utilizadores ON funcionarios.utilizadores_idlogin = utilizadores.idlogin
                             JOIN empresa ON funcionarios.empresa_idEmpresa = empresa.idEmpresa
+                            JOIN codigo_vencimento ON funcionarios.funcao = codigo_vencimento.idcodigo_vencimento
                             WHERE
                             (
                                 funcionarios.nome LIKE '%".$valorPesquisar."%'
@@ -88,8 +89,6 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                             OR
                                 funcionarios.data_admicao LIKE '%".$valorPesquisar."%'
                             OR
-                                funcionarios.funcao LIKE '%".$valorPesquisar."%'
-                            OR
                                 funcionarios.empresa_idEmpresa LIKE '%".$valorPesquisar."%'
                             OR
                                 funcionarios.endereco  LIKE '%".$valorPesquisar."%'
@@ -103,12 +102,31 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                                 utilizadores.utilizador LIKE '%".$valorPesquisar."%'
                             OR
                                 empresa.nome LIKE '%".$valorPesquisar."%'
+                            OR
+                                codigo_vencimento.funcao LIKE '%".$valorPesquisar."%'
                             )
                             AND funcionarios.eliminado = 0";
                             $search_result = filterTable($query);
                         }
                          else {
-                            $query = "SELECT funcionarios.* FROM funcionarios WHERE funcionarios.eliminado = 0";
+                            $query = "SELECT
+                                funcionarios.idfuncionarios AS idfuncionarios,
+                                funcionarios.nome AS nome,
+                                funcionarios.utilizadores_idlogin AS utilizadores_idlogin,
+                                funcionarios.data_nascimento AS data_nascimento,
+                                funcionarios.bi AS bi,
+                                funcionarios.data_admicao AS data_admicao,
+                                codigo_vencimento.funcao AS funcao,
+                                funcionarios.empresa_idEmpresa AS empresa_idEmpresa,
+                                funcionarios.endereco AS endereco,
+                                funcionarios.email AS email,
+                                funcionarios.cidade AS cidade,
+                                funcionarios.telemovel AS telemovel
+                            FROM funcionarios
+                            JOIN utilizadores ON funcionarios.utilizadores_idlogin = utilizadores.idlogin
+                            JOIN empresa ON funcionarios.empresa_idEmpresa = empresa.idEmpresa
+                            JOIN codigo_vencimento ON funcionarios.funcao = codigo_vencimento.idcodigo_vencimento
+                            WHERE funcionarios.eliminado = 0";
                             $search_result = filterTable($query);
                         }
                         // função para fazer a conexão à base de dados e executar a query
@@ -158,13 +176,11 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                                     utilizadores.idlogin =".$row['utilizadores_idlogin'];
                                     $resultado1 = mysqli_query($conn, $select);
                                     $linha1=mysqli_fetch_array($resultado1);
-                                    //echo $select;
-                                    //exit();
                                     echo "<td>" . $linha1['utilizador'] . "</td>";
                                         echo "<td>" . $row['data_nascimento'] . "</td>";
 										echo "<td>" . $row['bi'] . "</td>";
                                         echo "<td>" . $row['data_admicao'] . "</td>";
-                                        echo "<td>" . $row['funcao'] . "</td>";
+                                        echo "<td>" . utf8_encode($row['funcao']) . "</td>";
                                         $select = "SELECT
                                     empresa.nome
                                     FROM

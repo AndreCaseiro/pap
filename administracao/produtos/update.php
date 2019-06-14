@@ -87,10 +87,9 @@ if (!isset($_SESSION['permissao_utilizador']) || $_SESSION['permissao_utilizador
                             <label class="col-sm-5 col-form-label">IVA</label>
                             <div class="col-sm-7">
                                 <select name="iva" type="number" required class="form-control" value="<?php echo $iva; ?>">
-                                <option value="0" style="display:none">Escolha uma opção</option>
-                                    <option value="23">23%</option>
-                                    <option value="13">13%</option>
-                                    <option value="6">6%</option>
+                                    <option selected="<?php echo $iva == 23; ?>" value="23">23%</option>
+                                    <option selected="<?php echo $iva == 13; ?>" value="13">13%</option>
+                                    <option selected="<?php echo $iva == 6; ?>" value="6">6%</option>
                                 </select>
                             </div>
                         </div>

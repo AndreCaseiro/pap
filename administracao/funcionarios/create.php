@@ -74,7 +74,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                     <p>Para adicionar um novo funcionário por favor complete os campos em baixo e clique no botao submeter.</p>
                     <form action="create_funcionario_mysql.php" method="post"  enctype="multipart/form-data">
                              <div class="form-group row">
-                            <label class="col-sm-5 col-form-label">Nome do utilizador: </label>
+                            <label class="col-sm-5 col-form-label">Nome do funcionário: </label>
                             <div class="col-sm-7">
                                 <input type="text" name="utilizador" class="form-control" value="<?php echo $utilizador; ?>" >
         	          	    </div>
@@ -95,13 +95,27 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Data de Admição </label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="date" name="dataadmicao" value="<?php echo $dataadmicao; ?>"required>
+                                <input class="form-control" type="date" maxlength="8" name="dataadmicao" value="<?php echo $dataadmicao; ?>"required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Função</label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="text" name="funcao" value="<?php echo $funcao; ?>"required>
+                            <select id="funcao" name="funcao" required="required" class="form-control">
+                                	<option value="" style="display:none">Escolha uma opção</option>
+                                        <?php
+                                 $select = "SELECT
+                                 idcodigo_vencimento,
+                                 funcao
+                                 FROM
+                                 codigo_vencimento" ;
+                                 $resultado = mysqli_query($link, $select);
+                                 while ($linha=mysqli_fetch_array($resultado))
+                                 {
+                                  echo '<option value="'.$linha["idcodigo_vencimento"].'">'.utf8_encode($linha["funcao"]).'</option>';
+                              };
+                              ?>
+                              </select>
                             </div>
                         </div>
                         <div class="form-group row">
