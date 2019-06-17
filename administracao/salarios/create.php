@@ -13,7 +13,6 @@ $salariobase  = $salarioatual = $datasalariobase = $anoatual = "";
 
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     $id = trim($_GET["id"]);
-
     $sql = "SELECT * FROM funcionarios WHERE idlogin = ?";
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "i", $id);
@@ -174,8 +173,6 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                           </select>
                       </div>
                   </div>
-
-
                         <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Submeter</button>
                         <a href="/administracao/salarios/index.php" class="btn btn-outline-secondary btn-lg btn-block">Cancelar</a>
                     </form>

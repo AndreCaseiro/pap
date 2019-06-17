@@ -17,6 +17,6 @@ $sql = "UPDATE produtos
 		$_SESSION['produto_eliminado_com_sucesso']= "1";
 
         mysqli_close($link);
-header('Location:/administracao/index.php');
+header('Location:/administracao/produtos/index.php');
 exit();
 ?>

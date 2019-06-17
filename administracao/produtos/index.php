@@ -207,7 +207,7 @@ require_once "config.php";
 		{
 		?>
 		<script type="text/javascript">
-			swal("Sucesso!", "produto eliminado com sucesso!", "success");
+			swal("Sucesso!", "Produto eliminado com sucesso!", "success");
         </script>
 		<?PHP unset($_SESSION["produto_eliminado_com_sucesso"]);
         }

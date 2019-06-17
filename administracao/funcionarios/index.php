@@ -256,7 +256,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
         {
         ?>
         <script type="text/javascript">
-            swal("Sucesso!", "Funcionario criado com sucesso!", "success");
+            swal("Sucesso!", "Funcionário criado com sucesso!", "success");
         </script>
         <?PHP unset($_SESSION["funcionario_criado_com_sucesso"]);
         }
@@ -265,7 +265,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
 		{
 		?>
 		<script type="text/javascript">
-			swal("Sucesso!", "Funcionario atualizado com sucesso!", "success");
+			swal("Sucesso!", "Funcionário atualizado com sucesso!", "success");
         </script>
 		<?PHP unset($_SESSION["funcionario_actualizado_com_sucesso"]);
 		}
@@ -274,7 +274,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
 		{
 		?>
 		<script type="text/javascript">
-			swal("Sucesso!", "Funcionario eliminado com sucesso!", "success");
+			swal("Sucesso!", "Funcionário eliminado com sucesso!", "success");
         </script>
 		<?PHP unset($_SESSION["funcionario_eliminado_com_sucesso"]);
         }

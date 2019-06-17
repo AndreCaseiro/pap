@@ -19,10 +19,8 @@ $premios = "";
 /*
 echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
 */
- 
+
 ?>
-
-
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -47,18 +45,12 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
     <link rel="stylesheet" href="/administracao/assets/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-
 </head>
-
-
     <!-- Incluir sidebar e navbar -->
 	<?PHP
-	
 		include ($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php"); 
-	
 	?>
     <!------------------------------>
-
 <body>
     <!-- Conteudo da página -->
           <div class="wrapper">
@@ -194,7 +186,6 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
     <script>
         (function($) {
             "use strict";
-
             jQuery('#vmap').vectorMap({
                 map: 'world_en',
                 backgroundColor: null,
@@ -215,16 +206,16 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
         {
         ?>
         <script type="text/javascript">
-            swal("Sucesso!", "Salario criado com sucesso!", "success");
+            swal("Sucesso!", "Salário criado com sucesso!", "success");
         </script>
-        <?PHP unset($_SESSION["Salario_criado_com_sucesso"]);
+        <?PHP unset($_SESSION["salario_criado_com_sucesso"]);
         }
 
 		if (isset($_SESSION['salario_actualizado_com_sucesso']))
 		{
 		?>
 		<script type="text/javascript">
-			swal("Sucesso!", "Salario atualizado com sucesso!", "success");
+			swal("Sucesso!", "Salário atualizado com sucesso!", "success");
         </script>
 		<?PHP unset($_SESSION["salario_actualizado_com_sucesso"]);
 		}
@@ -233,10 +224,20 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
 		{
 		?>
 		<script type="text/javascript">
-			swal("Sucesso!", "salario eliminado com sucesso!", "success");
+			swal("Sucesso!", "Salário eliminado com sucesso!", "success");
         </script>
 		<?PHP unset($_SESSION["salario_eliminado_com_sucesso"]);
         }
+	?>
+    <?PHP
+             if (isset($_SESSION['premio_atribuido_com_sucesso']))
+                {
+                ?>
+                <script type="text/javascript">
+                    swal("Sucesso!", "Prémio atribuido com sucesso!", "success");
+                </script>
+                <?PHP unset($_SESSION["premio_atribuido_com_sucesso"]);
+                }
 	?>
 </body>
 </html>

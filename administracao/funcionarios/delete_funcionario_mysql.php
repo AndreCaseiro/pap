@@ -11,11 +11,11 @@ require_once "config.php";
 
 $sql = "UPDATE funcionarios SET eliminado = 1
 			WHERE idfuncionarios='".$_POST['idfuncionarios']."'";
-			
+
 		mysqli_query($link,$sql);
-		$_SESSION['produto_eliminado_com_sucesso']= "1";
+		$_SESSION['funcionario_eliminado_com_sucesso']= "1";
 
         mysqli_close($link);
-header('Location:/administracao/index.php');
+header('Location:/administracao/funcionarios/index.php');
 exit();
 ?>

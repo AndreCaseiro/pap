@@ -13,13 +13,8 @@ $sql = "UPDATE salarios
                     fk_premios = '".$_POST['premio']."'
                 	WHERE utilizadores_idlogin='".$_POST['idfuncionarios']."'";
 
-           //echo $sql;
-           //exit();
                      mysqli_query($link,$sql);
                      $_SESSION['premio_atribuido_com_sucesso']= "1";
-
-
-
                       mysqli_close($link);
 header('Location:/administracao/salarios/index.php');
 exit();
