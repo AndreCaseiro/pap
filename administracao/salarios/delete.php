@@ -14,6 +14,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     require_once "config.php";
     // Prepare a delete statement
     $sql = "UPDATE salarios SET eliminado = 1 WHERE idsalarios = ?";
+    $_SESSION['funcionario_eliminado_com_sucesso']= "1";
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "i", $param_id);

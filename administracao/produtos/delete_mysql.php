@@ -12,10 +12,10 @@ $sql = "UPDATE produtos
  SET eliminado = 1
 			WHERE idprodutos='".$_POST['idproduto']."'";
 
-		/*echo $sql;
-		exit();
-		*/
+
 		mysqli_query($link,$sql);
+		$_SESSION['produto_eliminado_com_sucesso']= "1";
+
         mysqli_close($link);
 header('Location:/administracao/index.php');
 exit();

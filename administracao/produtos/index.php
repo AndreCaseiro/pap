@@ -182,5 +182,35 @@ require_once "config.php";
             });
         })(jQuery);
     </script>
+
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <?PHP
+        if (isset($_SESSION['produto_criado_com_sucesso']))
+        {
+        ?>
+        <script type="text/javascript">
+            swal("Sucesso!", "Produto criado com sucesso!", "success");
+        </script>
+        <?PHP unset($_SESSION["produto_criado_com_sucesso"]);
+        }
+
+		if (isset($_SESSION['produto_actualizado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "Produto atualizado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["produto_actualizado_com_sucesso"]);
+		}
+
+		if (isset($_SESSION['produto_eliminado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "produto eliminado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["produto_eliminado_com_sucesso"]);
+        }
+	?>
 </body>
 </html>

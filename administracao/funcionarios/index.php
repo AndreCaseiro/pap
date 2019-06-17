@@ -250,5 +250,34 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
             });
         })(jQuery);
     </script>
+     <script src="../dist/js/sb-admin-2.js"></script>
+    <?PHP
+        if (isset($_SESSION['funcionario_criado_com_sucesso']))
+        {
+        ?>
+        <script type="text/javascript">
+            swal("Sucesso!", "Funcionario criado com sucesso!", "success");
+        </script>
+        <?PHP unset($_SESSION["funcionario_criado_com_sucesso"]);
+        }
+
+		if (isset($_SESSION['funcionario_actualizado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "Funcionario atualizado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["funcionario_actualizado_com_sucesso"]);
+		}
+
+		if (isset($_SESSION['funcionario_eliminado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "Funcionario eliminado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["funcionario_eliminado_com_sucesso"]);
+        }
+	?>
 </body>
 </html>

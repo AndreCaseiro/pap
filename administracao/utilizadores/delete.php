@@ -12,8 +12,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     require_once "config.php";
     // Prepare a delete statement
         $sql = "UPDATE utilizadores SET eliminado = 1  WHERE idlogin = ?";
-    echo $sql;
-    exit;
+        $_SESSION['utilizador_eliminado_com_sucesso']= "1";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -29,9 +28,9 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
             }
         }
     // Close statement
-    //mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt);
     // Close connection
-    //mysqli_close($link);
+    mysqli_close($link);
 } else {
     // Check existence of id parameter
     if (empty(trim($_GET["id"]))) {

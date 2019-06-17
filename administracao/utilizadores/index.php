@@ -197,9 +197,35 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
-        
     </script>
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <?PHP
+        if (isset($_SESSION['utilizador_criado_com_sucesso']))
+        {
+        ?>
+        <script type="text/javascript">
+            swal("Sucesso!", "Utilizador criado com sucesso!", "success");
+        </script>
+        <?PHP unset($_SESSION["utilizador_criado_com_sucesso"]);
+        }
 
+		if (isset($_SESSION['utilizador_actualizado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "Utilizador atualizado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["utilizador_actualizado_com_sucesso"]);
+		}
+
+		if (isset($_SESSION['utilizador_eliminado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "Utilizador eliminado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["utilizador_eliminado_com_sucesso"]);
+        }
+	?>
 </body>
-
 </html>

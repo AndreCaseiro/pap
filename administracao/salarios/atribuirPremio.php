@@ -70,6 +70,16 @@ $premios = "";
     </div>
     </div>
     </div>
+    <?PHP
+             if (isset($_SESSION['premio_atribuido_com_sucesso']))
+                {
+                ?>
+                <script type="text/javascript">
+                    swal("Sucesso!", "Premio atribuido com sucesso!", "success");
+                </script>
+                <?PHP unset($_SESSION["premio_atribuido_com_sucesso"]);
+                }
+	?>
 </body>
 
 </html>

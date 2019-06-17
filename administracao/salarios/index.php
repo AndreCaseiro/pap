@@ -209,5 +209,34 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
             });
         })(jQuery);
     </script>
+     <script src="../dist/js/sb-admin-2.js"></script>
+    <?PHP
+        if (isset($_SESSION['salario_criado_com_sucesso']))
+        {
+        ?>
+        <script type="text/javascript">
+            swal("Sucesso!", "Salario criado com sucesso!", "success");
+        </script>
+        <?PHP unset($_SESSION["Salario_criado_com_sucesso"]);
+        }
+
+		if (isset($_SESSION['salario_actualizado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "Salario atualizado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["salario_actualizado_com_sucesso"]);
+		}
+
+		if (isset($_SESSION['salario_eliminado_com_sucesso']))
+		{
+		?>
+		<script type="text/javascript">
+			swal("Sucesso!", "salario eliminado com sucesso!", "success");
+        </script>
+		<?PHP unset($_SESSION["salario_eliminado_com_sucesso"]);
+        }
+	?>
 </body>
 </html>

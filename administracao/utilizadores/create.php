@@ -27,7 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Verificar se existem erros antes de realizar o insert
     if (empty($utilizador_err)) {
         $sql = "INSERT INTO utilizadores (utilizador, password, tentativas , permissoes_id_permissoes , descricao_bloqueio_id_descricao_bloqueio , eliminado)
-		VALUES ('".$_POST['utilizador']."', PASSWORD('".$_POST['password']."'), '".$_POST['tentativas']."', '".$_POST['permissao']."', 1 , 0 )";
+        VALUES ('".$_POST['utilizador']."', PASSWORD('".$_POST['password']."'), '".$_POST['tentativas']."', '".$_POST['permissao']."', 1 , 0 )";
+                             $_SESSION['utilizador_criado_com_sucesso']= "1";
+
         if ($stmt = mysqli_prepare($link, $sql) or die(mysqli_error($link))) {
             mysqli_stmt_bind_param($stmt, "s", $param_utilizador);
             $param_utilizador = $utilizador;

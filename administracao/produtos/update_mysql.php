@@ -20,10 +20,9 @@ $sql = "UPDATE produtos
                     familia_produto_idfamilia_produto = '".$_POST['familiaproduto']."'
                 	WHERE idprodutos='".$_POST['idproduto']."'";
 
-            //echo $sql;
-            //exit();
-
                      mysqli_query($link,$sql);
+                     $_SESSION['produto_actualizado_com_sucesso']= "1";
+
 
 
                       mysqli_close($link);

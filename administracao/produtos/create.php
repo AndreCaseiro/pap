@@ -52,8 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($nome_err) && empty($preco_err) && empty($iva_err) && empty($stock_err)){
             // Prepare an insert statement
         $sql = "INSERT INTO produtos (nome, preco_base, iva, preco_com_iva, stock, empresa_idEmpresa, familia_produto_idfamilia_produto) VALUES ('".$_POST['nome']."', ".$_POST['preco'].", ".$_POST['iva']." ,((".$_POST['preco']." * (100 + ".$_POST['iva']." ))/100), '".$_POST['stock']."' , '".$_POST['empresa']."' ,'".$_POST['familiaproduto']."')";
-           //  echo $sql;
-    		//exit();
+        $_SESSION['produto_criado_com_sucesso']= "1";
 
         if($stmt = mysqli_prepare($link, $sql) or die(mysqli_error($link))){
                 // Bind variables to the prepared statement as parameters
@@ -195,7 +194,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                            {
                               echo '<option value="'.$linha["idfamilia_produto"].'">'.utf8_encode($linha["familia"]).'</option>';
                           };
-
                           ?>
                       </select>
                   </div>

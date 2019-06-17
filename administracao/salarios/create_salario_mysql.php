@@ -17,6 +17,8 @@ VALUES ('".$_POST['salariobase']."', '".$_POST['salarioatual']."', '".$_POST['da
 //exit();
 
                      mysqli_query($link,$sql);
+                     $_SESSION['salario_criado_com_sucesso']= "1";
+
                       mysqli_close($link);
 header('Location:/administracao/funcionarios/index.php');
 exit();

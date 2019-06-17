@@ -22,9 +22,9 @@ $sql = "UPDATE funcionarios
                     telemovel = '".$_POST['telemovel']."'
                 	WHERE idfuncionarios='".$_POST['idfuncionarios']."'";
 
-            //echo $sql;
-            //exit();
                      mysqli_query($link,$sql);
+                     $_SESSION['funcionario_actualizado_com_sucesso']= "1";
+
 
 
                       mysqli_close($link);

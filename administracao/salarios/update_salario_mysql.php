@@ -18,6 +18,8 @@ $sql = "UPDATE salarios
             //echo $sql;
            //exit();
                      mysqli_query($link,$sql);
+                     $_SESSION['salario_actualizado_com_sucesso']= "1";
+
 
 
                       mysqli_close($link);

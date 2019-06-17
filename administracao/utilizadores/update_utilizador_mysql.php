@@ -21,8 +21,7 @@ $sql = "UPDATE utilizadores
             //exit();
 
                      mysqli_query($link,$sql);
-
-
+                     $_SESSION['utilizador_actualizado_com_sucesso']= "1";
                       mysqli_close($link);
 header('Location:/administracao/utilizadores/index.php');
 exit();
