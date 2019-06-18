@@ -133,8 +133,8 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
                             echo "<tbody>";
                             while ($row = mysqli_fetch_array($search_result)) {
                                 echo "<tr>";
-                                echo "<td>" . $row['utilizador'] . "</td>";
-                                echo "<td>" . $row['nome'] . "</td>";
+                                echo "<td>" . utf8_encode($row['utilizador']) . "</td>";
+                                echo "<td>" . utf8_encode($row['nome']) . "</td>";
                                 echo "<td>" . $row['salario_base'] . "</td>";
                                 echo "<td>" . $row['salario_atual'] . "</td>";
                                 echo "<td>" . $row['data_salario_base'] . "</td>";

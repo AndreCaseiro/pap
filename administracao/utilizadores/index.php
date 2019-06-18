@@ -120,7 +120,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                             echo "<tbody>";
                             while ($row = mysqli_fetch_array($search_result)) {
                                 echo "<tr>";
-                                echo "<td>" . $row['utilizador'] . "</td>";
+                                echo "<td>" . utf8_encode($row['utilizador']) . "</td>";
                                 echo "<td>" . $row['fotografia'] . "</td>";
                                 echo "<td>" . $row['tentativas'] . "</td>";
                                 $select = "SELECT
@@ -147,14 +147,14 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                             echo "<p class='lead'><em>Nao foram encontrados resultados para a sua pesquisa.</em></p>";
                         }
                     } else {
-                        echo "ERROR: Could not able to execute $query. " . mysqli_error($link);
+                        echo "ERROR: Infelizmente nao deu para executar a $query. " . mysqli_error($link);
                     }
-                    
+
                     // Close connection
                     mysqli_close($link);
                     ?>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
     

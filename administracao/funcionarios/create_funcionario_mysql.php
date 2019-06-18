@@ -5,7 +5,6 @@ if (!isset($_SESSION['permissao_utilizador']) || $_SESSION['permissao_utilizador
     header('Location:/index.php');
     exit();
 }
-//*************************************************************************
 
 require_once "config.php";
 

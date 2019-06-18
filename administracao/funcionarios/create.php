@@ -89,7 +89,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">BI</label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="text" name="bi" maxlength="9" value="<?php echo $bi; ?>"required>
+                                <input class="form-control" type="text" name="bi" maxlength="8" value="<?php echo $bi; ?>"required>
                             </div>
                         </div>
                         <div class="form-group row">

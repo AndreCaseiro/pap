@@ -3,8 +3,6 @@ session_start();
 if (!isset($_SESSION['permissao_utilizador']) || $_SESSION['permissao_utilizador']!=1) {
     header('Location:/index.php');
     exit();
-
-
 }
 // Include config file
 require_once "config.php";
@@ -79,7 +77,6 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                                 <input class="form-control" type="number" min="0" name="salarioatual"  value="<?php echo $salarioatual; ?>" required>
                         </div>
                             </div>
-
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Data salario base </label>
                             <div class="col-sm-7">
@@ -105,7 +102,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                               ?>
                           </select>
                       </div>
-                  </div>
+                         </div>
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Funcionario:</label>
                             <div class="col-sm-7">
