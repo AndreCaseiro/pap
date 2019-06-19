@@ -32,21 +32,19 @@ $con = mysqli_connect('localhost','root','','pap_database');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
-
 mysqli_select_db($con,"pap_database");
-$sql="SELECT preco_base,salario_base FROM produtos,salarios WHERE produtos.ano_atual AND salarios.ano_atual = '".$q."' AND empresa_idEmpresa = 2 AND fk_empresa = 2";
-$result = mysqli_query($con,$sql);
-  $row = mysqli_fetch_assoc($result);  
-$preco_base = $row["preco_base"];
-                            $salario_base = $row["salario_base"];
-    
-    while ($row = mysqli_fetch_assoc($result)) {
-                         $preco_base = $row["preco_base"];
-                            $salario_base = $row["salario_base"];
-                    }
-    
+
+$sql_produtos = "SELECT SUM(produtos.preco_base) AS preco_base FROM produtos  WHERE produtos.ano_atual = '".$q."' AND empresa_idEmpresa = 2";
+        $sql_salarios = "SELECT SUM(salarios.salario_base) AS salario_base FROM salarios WHERE salarios.ano_atual = '".$q."' AND fk_empresa = 2";
+
+        $result = mysqli_query($con, $sql_produtos);
+        $row = mysqli_fetch_assoc($result);
+        $preco_base = $row["preco_base"];
+        $result = mysqli_query($con, $sql_salarios);
+        $row = mysqli_fetch_assoc($result);
+        $salario_base = $row["salario_base"];
     $soma = $preco_base + $salario_base; 
-  
+
     echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
