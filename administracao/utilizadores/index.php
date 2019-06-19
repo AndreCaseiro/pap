@@ -121,7 +121,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                             while ($row = mysqli_fetch_array($search_result)) {
                                 echo "<tr>";
                                 echo "<td>" . utf8_encode($row['utilizador']) . "</td>";
-                                echo "<td>" . $row['fotografia'] . "</td>";
+                                echo "<td class='text-center'> ".($row['fotografia'] != '' ? " <img src='/images/imagens_utilizador/" . $row['fotografia'] . "' width='60'> ":'')."</td>";
                                 echo "<td>" . $row['tentativas'] . "</td>";
                                 $select = "SELECT
                                 permissoes.descricoes
