@@ -10,17 +10,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dara - Funcionário</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="/administracao/apple-icon.png">
-    <link rel="shortcut icon" href="/administracao/favicon.ico">
-    <link rel="stylesheet" href="/administracao/vendors/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/administracao/vendors/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/administracao/vendors/themify-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="/administracao/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="/administracao/vendors/selectFX/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="/administracao/vendors/jqvmap/dist/jqvmap.min.css">
-    <link rel="stylesheet" href="/administracao/assets/css/style.css">
+    <link rel="apple-touch-icon" href="/funcionario/apple-icon.png">
+    <link rel="shortcut icon" href="/funcionario/favicon.ico">
+    <link rel="stylesheet" href="/funcionario/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/funcionario/vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/funcionario/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/funcionario/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/funcionario/vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/funcionario/vendors/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" href="/funcionario/assets/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <!-- Popper JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -122,30 +121,32 @@ img.logo-navbar {
   
                             <br>
                             <?php
-							echo '<p style="color:#808080"> Bem vindo, '.$_SESSION['utilizador'].' </p>';
+							echo '<p style="color:#808080"> Bem-vindo(a), '.$_SESSION['utilizador'].' </p>';
                         ?>
                         </div>
-                        <div class="user-area"  align="right" >    
+                        <div class="user-area" align="right" >    
                             
                      
                             
                              <?php if($_SESSION['fotografia'] != ''){ ?>
-                            <p style="margin-left:0.8em"><img src="/images/imagens_utilizador/<?php echo $_SESSION['fotografia']?>"  <?php echo $_SESSION['utilizador']?> alt="Avatar" class="avatar" /> </p>     
+                            <p style="margin-left:0.7em"><img src="/images/imagens_utilizador/<?php echo $_SESSION['fotografia']?>"  <?php echo $_SESSION['utilizador']?> alt="Avatar" class="avatar" /> </p>     
                 <?php } else{ ?>  
-                            <p style="margin-left:0.8em"><img src="/images/desconhecido.png" alt="Avatar" class="avatar" <?php echo $_SESSION['utilizador']?> /></p>       
+                            <p style="margin-left:0.7em"><img src="/images/desconhecido.png" alt="Avatar" class="avatar" <?php echo $_SESSION['utilizador']?> /></p>       
                 <?php } ?>
                             
                           
                         </div>
                     </a>
 
-                    <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="/funcionario/pagina_perfil.php"><i class="fa fa-user"></i> Meu Perfil</a>
+                    <ul class="menu dropdown-menu" align="bottom">
 
-                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Definições</a>
+                            <li><a class="nav-link" href="/funcionario/pagina_perfil.php"><i class="fa fa-user"></i> Meu Perfil</a></li>
 
-                        <a class="nav-link" href="/logout.php" onclick="return confirm('Tem a certeza que deseja sair?');"><i class="fa fa-power-off"></i> Sair</a>
-                    </div>
+                            <li><a class="nav-link" href="#"><i class="fa fa-cog"></i> Definições</a></li>
+
+                            <li><a class="nav-link" href="/logout.php" onclick="return confirm('Tem a certeza que deseja sair?');"><i class="fa fa-power-off"></i> Sair</a></li>
+
+                        </ul>
                 </div>
 
 

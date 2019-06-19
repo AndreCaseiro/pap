@@ -114,7 +114,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                             echo "<th>Fotografia</th>";
                             echo "<th>Tentativas</th>";
                             echo "<th>Permissão</th>";
-                            echo "<th>Ações</th>";
+                            echo "<th>Opções</th>";
                             echo "</tr>";
                             echo "</thead>";
                             echo "<tbody>";

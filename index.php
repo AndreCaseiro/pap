@@ -6,7 +6,7 @@ session_start(); //para utilizar "session" tem de estar aqui no topo e em todos 
 <html lang="pt">
 
 <head>
-    <title>Bem vindo a Dara International</title>
+    <title>Bem-vindo a Dara International</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->

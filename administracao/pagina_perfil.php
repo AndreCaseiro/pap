@@ -1,35 +1,28 @@
 <!doctype html>
-<?php
+<?php 
 session_start(); //para utilizar "session" tem de estar aqui no topo e em todos os scripts
-//*************************************para eliminar a variável session
+//*************************************para eliminar a variável session 
 
 //******evita que se introduza diretamento o link no browser***************
-if (!isset($_SESSION['permissao_utilizador']) || $_SESSION['permissao_utilizador']!=1) {
-    header('Location:/index.php');
-    exit();
-}
+if (!isset($_SESSION['permissao_utilizador']) || $_SESSION['permissao_utilizador']!=1)
+	{
+		header('Location:/index.php');
+		exit();		
+	}
 //*************************************************************************
 
 //*************************************************************************
-include($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base de dados
+include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base de dados
 //*************************************************************************
-
 ?>
 
 
-
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js" lang="pt">
-<!--<![endif]-->
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dara - Administrador</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
@@ -44,11 +37,12 @@ include($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base 
 
     <!-- Script para mudar botão editar para guardar ------------------------------------------------->
     <script>
-        function botao() {
+        window.addEventListener("load", function() {
+
             document.getElementById("btnSave").style.display = "none";
             document.getElementById("fileToUpload").style.display = "none";
             document.getElementById("foto").style.display = "none";
-        }
+        });
 
     </script>
 
@@ -61,6 +55,7 @@ include($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base 
     <!--[if IE]>
   	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
     <script language="javascript" type="text/javascript">
         function readURL(input, t) {
             if (input.files && input.files[0]) {
@@ -106,213 +101,262 @@ include($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base 
 
 
 <!-- Incluir sidebar e navbar -->
-<?php
-    
-        include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
-    
-    ?>
+<?PHP
+
+        include ($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
+
+	?>
 <!------------------------------>
 
-<body onload="botao()">
+<body>
+    <form name="editar_funcionario" method="post" action="editar_funcionario_utilizador_mysql.php" enctype="multipart/form-data">
+
+        <!-- Conteudo da página -->
+
+        <div class="container">
+            <h1>Meu Perfil</h1>
+            <hr>
+            <div class="row">
 
 
-    <!-- Conteudo da página -->
 
-    <div class="container">
-        <h1>Meu Perfil</h1>
-        <hr>
-        <div class="row">
+                <!-- Coluna da informação do funcionário -->
+                <div class="col-md-6 personal-info">
 
-
-            <!-- edit form column -->
-            <div class="col-md-7 personal-info">
-
-                <h3>Dados de Funcionário</h3>
-                <br>
+                    <h3>Dados de Funcionário</h3>
+                    <br>
 
 
-                <?php
-        $name = $_SESSION['utilizador'];
-        require_once "config.php";
-          $sql = "SELECT * FROM funcionarios WHERE utilizadores_idLogin = (SELECT idlogin FROM utilizadores WHERE utilizador = '" . $_SESSION['utilizador'] . "')";
-                    if ($result = mysqli_query($link, $sql)) {
-                        if (mysqli_num_rows($result) > 0) {
+                    <?php
+                    $name = $_SESSION['utilizador'];
+
+
+                require_once "config.php";
+                    $sql = "SELECT * FROM funcionarios WHERE idfuncionarios = (SELECT idlogin FROM utilizadores WHERE utilizador = '" . $_SESSION['utilizador'] . "')";
+
+                    if($result = mysqli_query($link, $sql)){
+                        if(mysqli_num_rows($result) > 0){
                             $npesquisa = $result;
-                            while ($row = mysqli_fetch_array($result)) {
-                                $varcar = $row['nome']; ?>
-                    <input type="text" name="idlogin_escondido" id="idlogin_escondido<?php  $row['nome']?>" value="" style="display:none">
+                             while($row = mysqli_fetch_array($result)){
+                                $varcar = $row['nome'];
+
+                               ?>
+                    <input type="text" name="idfuncionarios" id="idfuncionarios<?php echo $_SESSION['utilizador']  ?> value=" <?php echo $_SESSION['utilizador'] ?> style="display:none">
+
+                    <input type="text" name="idlogin_escondido" id="idlogin_escondido<?php echo $_SESSION['id_utilizador']?>" value="" style="display:none">
                     <div class="form-group">
 
-                        Nome Completo:<input readonly class="form-control" type="readonly" id="nome" name="nome" value="<?php echo $row['nome']; ?>">
-                    </div>
+                        <label class="col-lg-5 control-label">Nome completo:</label>
 
-                    <div class="form-group">
-                        <label class="col-lg-4 control-label">Data de Nascimento:</label>
-
-                        <input readonly class="form-control" id="idade" name="idade" type="date" value="<?php echo $row['idade']; ?>">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-4 control-label">Bilhete de Identidade/CC:</label>
-
-                        <input readonly class="form-control" id="bi" name="bi" type="text" value="<?php echo $row['bi']; ?>">
+                        <input readonly class="form-control" id="nome_funcionario" name="nome_funcionario" type="text" value="<?php echo $row['nome'];?>">
 
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Função:</label>
+                        <label class="col-lg-5 control-label">Data de Nascimento:</label>
 
-                        <input readonly class="form-control" type="text" id="funcao" name="funcao" value="<?php echo $row['funcao']; ?>">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Endereço:</label>
-
-                        <input readonly class="form-control" type="text" id="endereco" name="endereco" value="<?php echo $row['endereco']; ?>">
+                        <input readonly class="form-control" id="idade_funcionario" name="idade_funcionario" type="date" value="<?php echo $row['data_nascimento'];?>">
 
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Email:</label>
+                        <label class="col-lg-6 control-label">Bilhete de Identidade/CC:</label>
 
-                        <input readonly class="form-control" type="text" id="email" name="email" value="<?php echo $row['email']; ?>">
+                        <input readonly class="form-control" id="bi_funcionario" name="bi_funcionario" type="text" value="<?php echo $row['bi'];?>">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-5 control-label">Função:</label>
+
+                        <input readonly class="form-control" type="text" id="funcao_funcionario" name="funcao_funcionario" value="<?php echo $row['funcao'];?>">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-5 control-label">Endereço:</label>
+
+                        <input readonly class="form-control" type="text" id="endereco_funcionario" name="endereco_funcionario" value="<?php echo $row['endereco'];?>">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-5 control-label">Email:</label>
+
+                        <input readonly class="form-control" type="email" id="email_funcionario" name="email_funcionario" value="<?php echo $row['email'];?>">
 
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Cidade:</label>
 
-                        <input readonly class="form-control" type="text" id="cidade" name="cidade" value="<?php echo $row['cidade']; ?>">
+                        <input readonly class="form-control" type="text" id="cidade_funcionario" name="cidade_funcionario" value="<?php echo $row['cidade'];?>">
 
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Telemóvel:</label>
 
-                        <input readonly class="form-control" type="text" id="telemovel" name="telemovel" value="<?php echo $row['telemovel']; ?>">
+                        <input readonly class="form-control" type="tel" id="telemovel_funcionario" name="telemovel_funcionario" value="<?php echo $row['telemovel'];?>">
 
                     </div>
 
                     <br>
 
                     <?php
-                            }
+                             
+                             }
+        
                         }
-                        // Free result set
                         mysqli_free_result($result);
                     }
-                             // Close connection
-                   //mysqli_close($link); // nao posso ainda fechar a base de dados
-                    //echo "<th> Result :  $npesquisa </th>";
           ?>
-                    <?php
+                    <?php              
+         
         require_once "config.php";
-         $name = $_SESSION['utilizador'];
+		 $name = $_SESSION['utilizador'];
 
-        // echo "<th>Nome admin :>>  $name </th><br />";
-        $sql = "SELECT * FROM utilizadores WHERE utilizador ='" . $_SESSION['utilizador'] . "'";
-        // echo "<th>sql :>>  $sql </th>"; // echo para teste
-        if ($result = mysqli_query($link, $sql)) {
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    ?>
+		
+		$sql = "SELECT * FROM utilizadores WHERE utilizador ='" . $_SESSION['utilizador'] . "'";
+		
+		if($result = mysqli_query($link, $sql)){
+			if(mysqli_num_rows($result) > 0){
+				while($row = mysqli_fetch_array($result)){
+	?>
+                    <!-- Coluna dados de utilizador -->
                     <h3>Dados de Utilizador</h3>
                     <br>
 
-
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Nome de Utilizador:</label>
-                        <input readonly class="form-control" type="text" id="utilizador" name="utilizador" value="<?php echo $row['utilizador']; ?>">
+                        <label class="col-md-5 control-label">Nome de Utilizador:</label>
+                        <input readonly class="form-control" type="text" id="nome_utilizador" name="nome_utilizador" value="<?php echo $row['utilizador'];?>">
 
                     </div>
+					
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Palavra-Passe:</label>
-                        <input readonly class="form-control" id="password" name="password" type="password" value="<?php echo $row['password']; ?>">
+                        <label class="col-md-5 control-label">Palavra-Passe:</label>
+                        <input readonly class="form-control" id="password_utilizador" name="password_utilizador" type="password" value="********">
                     </div>
+                    <?php                             
+				}        
+			}
+			
+			mysqli_free_result($result);                       
+		}
+		 
+		?>
 
-                    <?php
-                }
-            }
-            // Free result set
-            mysqli_free_result($result);
-        }
-         // Close connection
-        //mysqli_close($link);
-        ?>
-            </div>
+                    <br>
+                    <br>
+                    <br>
+
+                </div>
 
 
 
-            <!-- left column -->
-            <div class="col-md-5" align="center">
+                <!-- Coluna para editar foto de perfil -->
+                <div class="col-md-6" align="center">
 
-                <div class="text-center" align="center">
+                    <div class="text-center" align="center">
 
-                    <?php
+                        <?php  
                         require_once "config.php";
                          $name = $_SESSION['utilizador'];
 
-                        // echo "<th>Nome admin :>>  $name </th><br />";
+                        
                         $sql = "SELECT * FROM utilizadores WHERE utilizador ='" . $_SESSION['utilizador'] . "'";
-                        // echo "<th>sql :>>  $sql </th>"; // echo para teste
-                        if ($result = mysqli_query($link, $sql)) {
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_array($result)) {
-                                    ?>
-
-                    <form name="editar_foto<?php echo $row['idlogin']?>" id="editar_foto<?php echo $row['idlogin']?>" method="post" action="editar_utilizador_mysql.php" enctype="multipart/form-data">
+                        
+                        if($result = mysqli_query($link, $sql)){
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){
+	               ?>
 
                         <div align="center">
 
-                            <!--     <img src="/images/desconhecido.jpg" id="blah" height="140" width="140" /> -->
-
-                            <!--  <img src="/images/imagens_utilizador/<?php //echo $row['fotografia']?>" id="blah<?php // echo $row['idlogin']?>" height="140" width="140" /> -->
-
                             <h6><strong>Foto de Perfil</strong></h6><br>
-                            <?php if ($row['fotografia'] != '') { ?>
+                            <?php if($row['fotografia'] != ''){ ?>
                             <img src="/images/imagens_utilizador/<?php echo $row['fotografia']?>" <?php echo $row['idlogin']?> id="blah" height="140" width="140" />
-                            <?php } else { ?>
+                            <?php } else{ ?>
                             <img src="/images/desconhecido.png" <?php echo $row['idlogin']?> id="blah2" height="140" width="140" />
                             <?php } ?>
-                        <br>
-                        <br>
-                        <h6 id="foto" name="foto">Selecione uma foto de perfil...</h6>
-                        <br>
-                        <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this,<?php echo $row['idlogin']?>)">
-                        <?php
+
+                            <br>
+                            <br>
+                            <h6 id="foto" name="foto">Selecione uma foto de perfil...</h6>
+                            <br>
+                            <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this,<?php echo $row['idlogin']?>)">
+                            <?php
                             if (isset($_SESSION['imagem_demasiado_grande'])) {
                                 echo '<p style=" color:#F00; font-weight:bold"">Ficheiro demasiado grande! Tente novamente com outro ficheiro com tamanho inferior a 500KB.</p>';
-                                unset($_SESSION["imagem_demasiado_grande"]);
+                                unset($_SESSION["imagem_demasiado_grande"]);    
                             }
-                                    if (isset($_SESSION['tipo_imagem_errada'])) {
-                                        echo '<p style=" color:#F00; font-weight:bold"">Tipo de ficheiro errado! Tente com ficheiros do tipo ".jpg; .bmp; jpeg".</p>';
-                                        unset($_SESSION["tipo_imagem_errada"]);
-                                    } ?>
-                            </div>
-                    </form>
-                    <?php
-                                }
-                            }
-                            // Free result set
-                            mysqli_free_result($result);
-                        }
-         // Close connection
-        //mysqli_close($link);
-        ?>
-                    <hr>
-                    <h4 align="center"><span class="fa fa-cog"></span> Opções</h4>
-                    <br>
-                    <div class="col-md-12" align="center">
+                            if (isset($_SESSION['tipo_imagem_errada'])) {
+                                echo '<p style=" color:#F00; font-weight:bold"">Tipo de ficheiro errado! Tente com ficheiros do tipo ".jpg; .bmp; jpeg".</p>';
+                                unset($_SESSION["tipo_imagem_errada"]); 
+                            }                           
+                        ?>
+                        </div>
+
+                        <?php                             
+				}        
+			}
+			
+			mysqli_free_result($result);                       
+		}
+		?>
+                        <hr>
+                        <h4 align="center"><span class="fa fa-cog"></span> Opções</h4>
+                        <br>
+                        <div class="col-md-12" align="center">
+
+                            <!--Script para alterar campos de texto para editáveis-->
+                            <script>
+                                $(document).ready(function() {
+
+                                    $('#btnEdit').click(function(e) {
+                                        e.preventDefault();
+                                        $("input[name='nome_utilizador']").prop("readonly", true);
+                                        $("input[name='password_utilizador']").prop("readonly", false);
+                                        $("input[name='nome_funcionario']").prop("readonly", false);
+                                        $("input[name='idade_funcionario']").prop("readonly", false);
+                                        $("input[name='bi_funcionario']").prop("readonly", true);
+                                        $("input[name='funcao_funcionario']").prop("readonly", true);
+                                        $("input[name='endereco_funcionario']").prop("readonly", false);
+                                        $("input[name='email_funcionario']").prop("readonly", false);
+                                        $("input[name='cidade_funcionario']").prop("readonly", false);
+                                        $("input[name='telemovel_funcionario']").prop("readonly", false);
+                                    });
+                                });
+
+                            </script>
+
+                            <!--Script para alterar campos de texto para não editáveis-->
+                            <script>
+                                $(document).ready(function() {
+
+                                    $('#btnSave').click(function(e) {
+                                        e.preventDefault();
+                                        $("input[name='utilizador']").prop("readonly", true);
+                                        $("input[name='password']").prop("readonly", true);
+                                        $("input[name='nome']").prop("readonly", true);
+                                        $("input[name='idade']").prop("readonly", true);
+                                        $("input[name='bi']").prop("readonly", true);
+                                        $("input[name='funcao']").prop("readonly", true);
+                                        $("input[name='endereco']").prop("readonly", true);
+                                        $("input[name='email']").prop("readonly", true);
+                                        $("input[name='cidade']").prop("readonly", true);
+                                        $("input[name='telemovel']").prop("readonly", true);
+                                    });
+                                });
+
+                            </script>
 
 
+                            <!--<p align="center"><button type="button" id="btnSave" name="btnSave" onclick="guardar();" class="btn btn-dark"><span class="fa fa-save"></span> Fechar Alterações</button></p>-->
 
-                        <p align="center"><button type="button" id="btnSave" name="btnSave" onclick="guardar();" class="btn btn-dark"><span class="fa fa-save"></span> Guardar alterações</button></p>
-
-                        <!--Script para esconder botão de guardar alterações e mostrar botão editar perfil-->
-                        <script>
-                            function guardar() {
+                            <!--Script para esconder botão de guardar alterações e mostrar botão editar perfil-->
+                            <script>
+                                function guardar() {
                                 document.getElementById("btnSave").style.display = "none";
                                 document.getElementById("fileToUpload").style.display = "none";
 								document.getElementById("foto").style.display = "none";
@@ -321,111 +365,83 @@ include($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base 
 
                         </script>
 
-                        
 
-                        <p align="center"><button type="button" id="btnEdit" onclick="editar();" class="btn btn-dark"><span class="fa fa-pencil"></span> Editar Perfil</button></p>
 
-                        <!--Script para esconder botão de editar perfil e mostrar botão guardar alterações-->
-                        <script>
-                            function editar() {
-                                document.getElementById("btnSave").style.display = "block";
-                                document.getElementById("fileToUpload").style.display = "block";
-                                document.getElementById("foto").style.display = "block";
-                                document.getElementById("btnEdit").style.display = "none";
-                            }
+                            <p align="center"><button type="button" id="btnEdit" onclick="editar();" class="btn btn-dark"><span class="fa fa-pencil"></span> Editar Perfil</button></p>
+                            
+                            <p align="center"><button type="submit" id="guardaralteracoes" name="guardaralteracoes" class="btn btn-dark"><span class="fa fa-save"></span> Guardar Alterações</button></p>
+                            
+                            <!--Script para esconder botão de editar perfil e mostrar botão guardar alterações-->
+                            <script>
+                                function editar() {
+                                    //document.getElementById("btnSave").style.display = "block";
+                                    document.getElementById("fileToUpload").style.display = "block";
+                                    document.getElementById("foto").style.display = "block";
+                                    document.getElementById("btnEdit").style.display = "none";
+                                }
 
-                        </script>
-                        <hr>
+                            </script>
+                            <hr>
 
-                        <!--Script para alterar campos de texto para editáveis-->
-                        <script>
-                            $(document).ready(function() {
 
-                                $('#btnEdit').click(function(e) {
-                                    e.preventDefault();
-                                    $("input[name='utilizador']").prop("readonly", false);
-                                    $("input[name='password']").prop("readonly", false);
-                                    $("input[name='nome']").prop("readonly", false);
-                                    $("input[name='idade']").prop("readonly", false);
-                                    $("input[name='bi']").prop("readonly", true);
-                                    $("input[name='funcao']").prop("readonly", true);
-                                    $("input[name='endereco']").prop("readonly", false);
-                                    $("input[name='email']").prop("readonly", false);
-                                    $("input[name='cidade']").prop("readonly", false);
-                                    $("input[name='telemovel']").prop("readonly", false);
-                                });
-                            });
 
-                        </script>
 
-                        <!--Script para alterar campos de texto para não editáveis-->
-                        <script>
-                            $(document).ready(function() {
+                        </div>
 
-                                $('#btnSave').click(function(e) {
-                                    e.preventDefault();
-                                    $("input[name='utilizador']").prop("readonly", true);
-                                    $("input[name='password']").prop("readonly", true);
-                                    $("input[name='nome']").prop("readonly", true);
-                                    $("input[name='idade']").prop("readonly", true);
-                                    $("input[name='bi']").prop("readonly", true);
-                                    $("input[name='funcao']").prop("readonly", true);
-                                    $("input[name='endereco']").prop("readonly", true);
-                                    $("input[name='email']").prop("readonly", true);
-                                    $("input[name='cidade']").prop("readonly", true);
-                                    $("input[name='telemovel']").prop("readonly", true);
-                                });
-                            });
-
-                        </script>
                     </div>
 
                 </div>
+
             </div>
+
         </div>
-    </div>
+    </form>
 
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-    <?php
-        if (isset($_SESSION['utilizador_actualizado_com_sucesso'])) {
-            ?>
+    <?PHP 
+		if (isset($_SESSION['utilizador_actualizado_com_sucesso']))
+		{
+		?>
     <script type="text/javascript">
-        swal("Sucesso!", "Utilizador atualizado com sucesso!", "success");
+        swal("Sucesso!", "Dados alterados com sucesso!", "success");
 
     </script>
-    <?php unset($_SESSION["utilizador_actualizado_com_sucesso"]);
-        }
+    <?PHP unset($_SESSION["utilizador_actualizado_com_sucesso"]);	
+		}
 
 
-        if (isset($_SESSION['utilizador_eliminado_com_sucesso'])) {
-            ?>
+		if (isset($_SESSION['utilizador_eliminado_com_sucesso']))
+		{
+		?>
     <script type="text/javascript">
         swal("Sucesso!", "Utilizador eliminado com sucesso!", "success");
 
     </script>
-    <?php unset($_SESSION["utilizador_eliminado_com_sucesso"]);
-        }
-        
-        if (isset($_SESSION['utilizador__empresa_nao_pode_ser_eliminado'])) {
-            ?>
+    <?PHP unset($_SESSION["utilizador_eliminado_com_sucesso"]);	
+		}
+		
+		if (isset($_SESSION['utilizador__empresa_nao_pode_ser_eliminado']))
+		{
+		?>
     <script type="text/javascript">
         swal("Erro!", "Utilizador não pode ser eliminado!", "error");
 
     </script>
-    <?php unset($_SESSION["utilizador__empresa_nao_pode_ser_eliminado"]);
-        }
+    <?PHP unset($_SESSION["utilizador__empresa_nao_pode_ser_eliminado"]);	
+		}
 
-        if (isset($_SESSION['utilizador_nao_e_empresa_ou_admin'])) {
-            ?>
+		if (isset($_SESSION['utilizador_nao_e_empresa_ou_admin']))
+		{
+		?>
     <script type="text/javascript">
         swal("Erro!", "Não tem permissão para eliminar administradores!", "error");
 
     </script>
-    <?php unset($_SESSION["utilizador_nao_e_empresa_ou_admin"]);
-        }
-    ?>
+    <?PHP unset($_SESSION["utilizador_nao_e_empresa_ou_admin"]);	
+		}
+	?>
 
 
     <!-- Fim do conteudo da página -->

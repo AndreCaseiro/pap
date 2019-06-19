@@ -100,12 +100,28 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['utilizadores_idlogin'] . "</td>";
-                                         echo "<td>" . $row['funcionarios_idfuncionarios'] . "</td>";
+                                    $select = "SELECT
+                                    utilizadores.utilizador
+                                    FROM
+                                    utilizadores
+                                    WHERE
+                                    utilizadores.idlogin =".$row['utilizadores_idlogin'];
+                                    $resultado1 = mysqli_query($conn, $select);
+                                    $linha1=mysqli_fetch_array($resultado1);
+                                    echo "<td>" . $linha1['utilizador'] . "</td>";
+                                                $select = "SELECT
+                                            funcionarios.nome
+                                            FROM
+                                            funcionarios
+                                            WHERE
+                                            funcionarios.idfuncionarios =".$row['funcionarios_idfuncionarios'];
+                                            $resultado1 = mysqli_query($conn, $select);
+                                            $linha1=mysqli_fetch_array($resultado1);
+                                            echo "<td>" . $linha1['nome'] . "</td>";
                                     echo "<td>" . $row['fk_premios'] . "€</td>";
                                     echo "</tr>";
                                 }
-                                echo "</tbody>";                            
+                                echo "</tbody>";
                             echo "</table>";
                             // Free result set
                             mysqli_free_result($result);

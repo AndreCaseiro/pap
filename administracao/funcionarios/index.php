@@ -157,7 +157,7 @@
                                             echo "<th>Cidade</th>";
                                             echo "<th>Telemóvel</th>";
                                             echo "<th>Email</th>";
-                                            echo "<th>Ações</th>";
+                                            echo "<th>Opções</th>";
                                         echo "</tr>";
                                     echo "</thead>";
                                     echo "<tbody>";

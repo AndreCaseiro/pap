@@ -73,13 +73,51 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
                         <h2 class="pull-left">Produtos Padrão</h2>
                     </div>
                     <?php
+    if(isset($_POST['pesquisar']))
+    {
+        $valorPesquisar = $_POST['valorPesquisar'];
+        // pesquisar em todas as colunas
+        // usar concat para juntar mais que um valor na pesquisa
+        $query = "SELECT *
+        FROM produtos
+        WHERE
+        (nome LIKE '%".$valorPesquisar."%'
+        OR
+        preco_base LIKE '%".$valorPesquisar."%'
+        OR
+        stock LIKE '%".$valorPesquisar."%'
+        OR
+        iva LIKE '%".$valorPesquisar."%'
+        OR
+        preco_com_iva LIKE '%".$valorPesquisar."%')
+        AND eliminado = 0
+        AND empresa_idEmpresa=2";
+        $search_result = filterTable($query);
+    }
+    else {
+        $query = "SELECT produtos.* FROM produtos WHERE produtos.eliminado = 0 AND empresa_idEmpresa=2";
+        $search_result = filterTable($query);
+    }
+    // função para fazer a conexão à base de dados e executar a query
+    function filterTable($query)
+    {
+        $connect = mysqli_connect("localhost", "root", "", "pap_database");
+        $filter_Result = mysqli_query($connect, $query);
+        return $filter_Result;
+    }
+    ?>
+    <form action="" method="post">
+    <input type="text" name="valorPesquisar" placeholder="Pesquise um produto">
+    <input type="submit" name="pesquisar" value="Pesquisar"></a>
+    <br>
+    <br>
+
+                    <?php
                     // Include config file
                     require_once "config.php";
-                    
                     // Attempt select query execution
-                    $sql = "SELECT * FROM pap_database.produtos WHERE empresa_idEmpresa = 2 ";
-                    if($result = mysqli_query($link, $sql)){
-                        if(mysqli_num_rows($result) > 0){
+                    if($search_result){
+                        if(mysqli_num_rows($search_result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
@@ -87,51 +125,38 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
 										echo "<th>Preço Base</th>";
                                         echo "<th>Stock</th>";
                                         echo "<th>IVA</th>";
-                                        echo "<th>Ações</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
-                                while($row = mysqli_fetch_array($result)){
+                                while($row = mysqli_fetch_array($search_result)){
                                     echo "<tr>";
                                         echo "<td>" . $row['nome'] . "</td>";
                                         echo "<td>" . $row['preco_base'] . "</td>";
 										echo "<td>" . $row['stock'] . "</td>";
                                         echo "<td>" . $row['iva'] . "</td>";
-                                        echo "<td>";
-                                            echo "<a href='read.php?id=". $row['idprodutos'] ."' title='View Record' data-toggle='tooltip'><span class='fa fa-eye-open'></span></a>";
-                                            echo "<a href='update.php?id=". $row['idprodutos'] ."' title='Update Record' data-toggle='tooltip'><span class='fa fa-pencil'></span></a>";
-                                            echo "<a href='delete.php?id=". $row['idprodutos'] ."' title='Delete Record' data-toggle='tooltip'><span class='fa fa-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
-                                echo "</tbody>";                            
+                                echo "</tbody>";
                             echo "</table>";
                             // Free result set
-                            mysqli_free_result($result);
+                            mysqli_free_result($search_result);
                         } else{
-                            echo "<p class='lead'><em>No records were found.</em></p>";
+                            echo "<p class='lead'><em>Não foram encontrados resultados para a sua pesquisa.</em></p>";
                         }
                     } else{
-                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+                        echo "ERROR: Could not able to execute $query. " . mysqli_error($link);
                     }
- 
+
                     // Close connection
                     mysqli_close($link);
                     ?>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
-	
-					
-    <!-- Fim do conteudo da página -->    
-        
-        
-        
-    <!-- /#right-panel -->
-
+    <!-- Fim do conteudo da página -->
     <!-- Right Panel -->
-
     <script src="/administracao/vendors/jquery/dist/jquery.min.js"></script>
     <script src="/administracao/vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="/administracao/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
