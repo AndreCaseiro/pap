@@ -26,11 +26,11 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="pt"> 
+<html class="no-js" lang="pt">
 <!--<![endif]-->
 
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dara - Administrador</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
@@ -135,7 +135,9 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                                 echo "<td>";
                                 echo "<a href='read.php?id=". $row['idlogin'] ."' title='View Record' data-toggle='tooltip'><span class='fa fa-eye-open'></span></a>";
                                 echo "<a href='update.php?id=". $row['idlogin'] ."' title='Update Record' data-toggle='tooltip'><span class='fa fa-pencil'></span></a>";
-                                echo "<a href='delete.php?id=". $row['idlogin'] ."' title='Delete Record' data-toggle='tooltip'><span class='fa fa-trash'></span></a>";
+                                if ($row['permissoes_id_permissoes'] != 1 && $row['permissoes_id_permissoes'] != 3) {
+                                    echo "<a href='delete.php?id=". $row['idlogin'] ."' title='Delete Record' data-toggle='tooltip'><span class='fa fa-trash'></span></a>";
+                                }
                                 echo "</td>";
                                 echo "</tr>";
                             }
@@ -157,16 +159,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
             </div>
         </div>
     </div>
-    
-    
-    <!-- Fim do conteudo da página -->    
-    
-    
-    
-    <!-- /#right-panel -->
-
-    <!-- Right Panel -->
-
+    <!-- Fim do conteudo da página -->
     <script src="/administracao/vendors/jquery/dist/jquery.min.js"></script>
     <script src="/administracao/vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="/administracao/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -180,7 +173,6 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
     <script src="/administracao/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <script src="/administracao/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script>
-     
         (function($) {
             "use strict";
 
@@ -199,14 +191,14 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
         })(jQuery);
     </script>
     <script src="../dist/js/sb-admin-2.js"></script>
-    <?PHP
+    <?php
         if (isset($_SESSION['utilizador_criado_com_sucesso']))
         {
         ?>
         <script type="text/javascript">
             swal("Sucesso!", "Utilizador criado com sucesso!", "success");
         </script>
-        <?PHP unset($_SESSION["utilizador_criado_com_sucesso"]);
+        <?php unset($_SESSION["utilizador_criado_com_sucesso"]);
         }
 
 		if (isset($_SESSION['utilizador_actualizado_com_sucesso']))
@@ -215,7 +207,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
 		<script type="text/javascript">
 			swal("Sucesso!", "Utilizador atualizado com sucesso!", "success");
         </script>
-		<?PHP unset($_SESSION["utilizador_actualizado_com_sucesso"]);
+		<?php unset($_SESSION["utilizador_actualizado_com_sucesso"]);
 		}
 
 		if (isset($_SESSION['utilizador_eliminado_com_sucesso']))
@@ -224,7 +216,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
 		<script type="text/javascript">
 			swal("Sucesso!", "Utilizador eliminado com sucesso!", "success");
         </script>
-		<?PHP unset($_SESSION["utilizador_eliminado_com_sucesso"]);
+		<?php unset($_SESSION["utilizador_eliminado_com_sucesso"]);
         }
 	?>
 </body>

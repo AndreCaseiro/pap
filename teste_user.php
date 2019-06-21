@@ -6,28 +6,26 @@ session_start(); //para utilizar "session" tem de estar aqui no topo e em todos 
 if (!isset($_POST['utilizador']))
 	{
 		header('Location:/index.php');
-		exit();		
+		exit();
 	}
 //*************************************************************************
 
 include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base de dados
 
 //******************************deteta se o user existe********************************
-$select = "SELECT 
-				utilizadores.idlogin, 
-				utilizadores.utilizador, 
+$select = "SELECT
+				utilizadores.idlogin,
+				utilizadores.utilizador,
 				utilizadores.tentativas,
-				utilizadores.descricao_bloqueio_id_descricao_bloqueio, 
-				utilizadores.permissoes_id_permissoes 
-			FROM 
-				utilizadores 
-			WHERE utilizadores.utilizador ='".$_POST['utilizador']. "' 
-			
+				utilizadores.descricao_bloqueio_id_descricao_bloqueio,
+				utilizadores.permissoes_id_permissoes
+			FROM
+				utilizadores
+			WHERE utilizadores.utilizador ='".$_POST['utilizador']. "'
 			LIMIT 1" ;
 
 //echo $select;
 //exit();
-		
 $resultado = mysqli_query($conn, $select);
 
 $numero_de_linhas = mysqli_num_rows($resultado);

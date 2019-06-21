@@ -51,30 +51,31 @@ $_SESSION['utilizador_actualizado_com_sucesso']= "1";
 
 if($_FILES["fileToUpload"]["name"]!='')
 	{ 
-		$extensao_ficheiro = (pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));		
+		$extensao_ficheiro = (pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION));
 		//****************************upload imagem*********************
 		$target_dir = $_SERVER['DOCUMENT_ROOT']."/images/imagens_utilizador/";
+
 		$target_file = $target_dir.$idlogin_escondido.".".$extensao_ficheiro;
-		//echo $target_file;
-   
-				
+
 		//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         //exit();
 		move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-		
+		chmod($target_file, 777);
 		$update="UPDATE utilizadores
-					SET fotografia ='".$_SESSION['id_utilizador'].".".$extensao_ficheiro."' 
-					WHERE idlogin='".$_SESSION['id_utilizador']."' 
+					SET fotografia ='".$_SESSION['id_utilizador'].".".$extensao_ficheiro."'
+					WHERE idlogin='".$_SESSION['id_utilizador']."'
 						LIMIT 1";
 		mysqli_query($link,$update);
-    
-		//*****************************************************************						
+
+		//****************************************************************
 	}
 
-mysqli_close($link,$update);
+
+$sql = "SELECT fotografia FROM utilizadores WHERE idlogin = '" . $_SESSION['id_utilizador']."'";
+$result = mysqli_query($link, $sql);
+$row = mysqli_fetch_array($result);
+$_SESSION['fotografia']= $row['fotografia'];
+
 header('Location:/administracao/pagina_perfil.php');
-exit();	
-
-	
-
+exit();
 ?>

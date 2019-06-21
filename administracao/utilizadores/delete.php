@@ -11,22 +11,23 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     // Incluir o config
     require_once "config.php";
     // Prepare a delete statement
-        $sql = "UPDATE utilizadores SET eliminado = 1  WHERE idlogin = ?";
-        $_SESSION['utilizador_eliminado_com_sucesso']= "1";
-        if ($stmt = mysqli_prepare($link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_id);
-            // Set parameters
-            $param_id = trim($_POST["id"]);
-            // Attempt to execute the prepared statement
-            if (mysqli_stmt_execute($stmt)) {
-                // Records deleted successfully. Redirect to landing page
-                header("location: index.php");
-                exit();
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+    $sql = "UPDATE utilizadores SET eliminado = 1 WHERE idlogin = ? ";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "i", $param_id);
+        // Set parameters
+        $param_id = trim($_POST["id"]);
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt)) {
+            $_SESSION['utilizador_eliminado_com_sucesso']= "1";
+            // Records deleted successfully. Redirect to landing page
+            header("location: index.php");
+            exit();
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
         }
+    }
     // Close statement
     mysqli_stmt_close($stmt);
     // Close connection
