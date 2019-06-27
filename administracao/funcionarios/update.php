@@ -81,26 +81,26 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Nome do funcionario: </label>
                             <div class="col-sm-7">
-                                <input type="text" name="utilizador" class="form-control" value="<?php echo $utilizador; ?>" >
+                                <input type="text" name="utilizador" class="form-control" value="<?php echo $utilizador; ?>" required>
         	          	    </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Data de Nascimento </label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="date" name="datanascimento"  value="<?php echo $datanascimento; ?>"required>
+                                <input class="form-control" type="date" name="datanascimento"  value="<?php echo $datanascimento; ?>">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">BI</label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="text" name="bi" maxlength="8" value="<?php echo $bi; ?>"required>
+                                <input class="form-control" type="text" name="bi" maxlength="8" value="<?php echo $bi; ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Data de Admição </label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="date" name="dataadmicao" value="<?php echo $dataadmicao; ?>"required>
+                                <input class="form-control" type="date" name="dataadmicao" value="<?php echo $dataadmicao; ?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -132,7 +132,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Endereço</label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="text" name="endereco" value="<?php echo $endereco; ?>"required>
+                                <input class="form-control" type="text" name="endereco" value="<?php echo utf8_encode($endereco); ?>"required>
                             </div>
                         </div>
                         <div class="form-group row">

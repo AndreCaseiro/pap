@@ -201,7 +201,6 @@ a {text-decoration:none;}
                         </a>
                         <ul class="menu dropdown-menu" align="bottom">
                             <li><a class="nav-link" href="/administracao/pagina_perfil.php"><i class="fa fa-user"></i> Meu Perfil</a></li>
-                            <li><a class="nav-link" href="#"><i class="fa fa-cog"></i> Definições</a></li>
                             <li><a class="nav-link" href="/logout.php" onclick="return confirm('Tem a certeza que deseja sair?');"><i class="fa fa-power-off"></i> Sair</a></li>
                         </ul>
                     </div>
