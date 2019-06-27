@@ -91,26 +91,6 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                 <input type="number" name="anoatual" class="form-control"  maxlength="4" value="<?php echo $anoatual; ?>"required>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-5 col-form-label">Codigo vencimento:</label>
-                            <div class="col-sm-7">
-                                <select id="codigovencimento" name="codigovencimento" required="required" class="form-control">
-                                	<option value="" style="display:none">Escolha uma opção</option>
-                                	<?php
-                                 $select = "SELECT
-                                 idcodigo_vencimento,
-                                 funcao
-                                 FROM
-                                 codigo_vencimento" ;
-                                 $resultado = mysqli_query($link, $select);
-                                 while ($linha=mysqli_fetch_array($resultado))
-                                 {
-                                  echo '<option value="'.$linha["idcodigo_vencimento"].'">'.utf8_encode($linha["funcao"]).'</option>';
-                              };
-                              ?>
-                          </select>
-                      </div>
-                  </div>
                         <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Submeter</button>
                         <a href="/administracao/salarios/index.php" class="btn btn-outline-secondary btn-lg btn-block">Cancelar</a>
                     </form>

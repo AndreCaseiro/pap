@@ -109,7 +109,7 @@ a {text-decoration:none;}
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="menu-icon">
-                        <a href="/administracao/index.php"> <i class="menu-icon fa ti-home"></i>Página Inical </a>
+                        <a href="/administracao/index.php"> <i class="menu-icon fa ti-home"></i>Página Inicial </a>
                     </li>
                     <h3 class="menu-title">Área Produtos</h3><!-- /.menu-title -->
                     <li class="menu-icon">
@@ -118,8 +118,8 @@ a {text-decoration:none;}
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa ti-eye"></i>Consultar Produtos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/administracao/produtos/marcas_produtos/marca_padrao.php">Padrão</a></li>
-                            <li><i class="fa fa-table"></i><a href="/administracao/produtos/marcas_produtos/marca_dara.php">My Dara</a></li>
+                            <li><i class="fa fa-table"></i><a href="/administracao/produtos/marcas_produtos/marca_padrao.php">Produtos Padrão</a></li>
+                            <li><i class="fa fa-table"></i><a href="/administracao/produtos/marcas_produtos/marca_dara.php">Produtos Dara</a></li>
                         </ul>
                     </li>
 
@@ -135,8 +135,8 @@ a {text-decoration:none;}
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa ti-eye"></i>Consultar Salários</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/administracao/salarios/salarios_marcas/padrao.php">Funcionários Padrão</a></li>
-                            <li><i class="fa fa-table"></i><a href="/administracao/salarios/salarios_marcas/dara.php">Funcionários Dara</a></li>
+                            <li><i class="fa fa-table"></i><a href="/administracao/salarios/salarios_marcas/padrao.php">Salários Padrão</a></li>
+                            <li><i class="fa fa-table"></i><a href="/administracao/salarios/salarios_marcas/dara.php">Salários Dara</a></li>
                         </ul>
                     </li>
                     <h3 class="menu-title">Área Funcionário</h3><!-- /.menu-title -->
@@ -146,16 +146,16 @@ a {text-decoration:none;}
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa ti-eye"></i>Consultar Funcionários</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/administracao/funcionarios/empresa_funcionarios/padrao.php">Padrão</a></li>
-                            <li><i class="fa fa-table"></i><a href="/administracao/funcionarios/empresa_funcionarios/dara.php">Dara</a></li>
+                            <li><i class="fa fa-table"></i><a href="/administracao/funcionarios/empresa_funcionarios/padrao.php">Funcionários Padrão</a></li>
+                            <li><i class="fa fa-table"></i><a href="/administracao/funcionarios/empresa_funcionarios/dara.php">Funcionários Dara</a></li>
                         </ul>
                     </li>
                     <h3 class="menu-title">Empresa</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-euro"></i>Gestão Monetária</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa ti-bar-chart"></i><a href="/administracao/empresa/gestao_dara.php">Dara</a></li>
-                            <li><i class="menu-icon fa ti-bar-chart"></i><a href="/administracao/empresa/gestao_padrao.php">Padrão</a></li>
+                            <li><i class="menu-icon fa ti-bar-chart"></i><a href="/administracao/empresa/gestao_dara.php">Gestão Dara</a></li>
+                            <li><i class="menu-icon fa ti-bar-chart"></i><a href="/administracao/empresa/gestao_padrao.php">Gestão Padrão</a></li>
                         </ul>
                     </li>
                 </ul>

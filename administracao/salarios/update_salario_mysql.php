@@ -12,11 +12,10 @@ $sql = "UPDATE salarios
                 SET
                     salario_base = '".$_POST['salariobase']."',
                     salario_atual = '".$_POST['salarioatual']."',
-                    ano_atual = ".$_POST['anoatual'].",
-                    fk_codvencimento = '".$_POST['codigovencimento']."'
+                    ano_atual = ".$_POST['anoatual']."
                 	WHERE utilizadores_idlogin='".$_POST['idsalarios']."'";
             //echo $sql;
-           //exit();
+            //exit();
                      mysqli_query($link,$sql);
                      $_SESSION['salario_actualizado_com_sucesso']= "1";
 

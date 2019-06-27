@@ -130,9 +130,9 @@ echo '<p style="color:#F00"> Bem vindo: '.$_SESSION['utilizador'].' </p>';
                                 while($row = mysqli_fetch_array($search_result)){
                                     echo "<tr>";
                                         echo "<td>" . $row['nome'] . "</td>";
-                                        echo "<td>" . $row['preco_base'] . "</td>";
+                                        echo "<td>" . $row['preco_base'] . "€</td>";
 										echo "<td>" . $row['stock'] . "</td>";
-                                        echo "<td>" . $row['iva'] . "</td>";
+                                        echo "<td>" . $row['iva'] . "%</td>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
