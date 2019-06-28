@@ -97,6 +97,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                     $name = $_SESSION['utilizador'];
                 require_once "config.php";
                     $sql = "SELECT * FROM funcionarios WHERE utilizadores_idlogin = (SELECT idlogin FROM utilizadores WHERE utilizador = '" . $_SESSION['utilizador'] . "')";
+                    
                     if($result = mysqli_query($link, $sql)) {
                         if(mysqli_num_rows($result) > 0) {
                             $npesquisa = $result;

@@ -132,8 +132,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                 
    
                 require_once "config.php";
-                    $sql = "SELECT * FROM funcionarios WHERE idfuncionarios = (SELECT idlogin FROM utilizadores WHERE utilizador = '" . $_SESSION['utilizador'] . "')";
-      
+                    $sql = "SELECT * FROM funcionarios WHERE utilizadores_idlogin = (SELECT idlogin FROM utilizadores WHERE utilizador = '" . $_SESSION['utilizador'] . "')";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             $npesquisa = $result;
@@ -185,7 +184,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                     <div class="form-group">
                         <label class="col-lg-5 control-label">Endereço:</label>
 
-                        <input readonly class="form-control" type="text" id="endereco_funcionario" name="endereco_funcionario" value="<?php echo $row['endereco'];?>">
+                        <input readonly class="form-control" type="text" id="endereco_funcionario" name="endereco_funcionario" value="<?php echo utf8_encode($row['endereco']);?>">
 
                     </div>
 

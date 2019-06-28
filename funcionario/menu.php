@@ -142,8 +142,6 @@ img.logo-navbar {
 
                             <li><a class="nav-link" href="/funcionario/pagina_perfil.php"><i class="fa fa-user"></i> Meu Perfil</a></li>
 
-                            <li><a class="nav-link" href="#"><i class="fa fa-cog"></i> Definições</a></li>
-
                             <li><a class="nav-link" href="/logout.php" onclick="return confirm('Tem a certeza que deseja sair?');"><i class="fa fa-power-off"></i> Sair</a></li>
 
                         </ul>
