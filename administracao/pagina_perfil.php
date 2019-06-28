@@ -107,7 +107,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
                                     <input type="text" name="idlogin_escondido" id="idlogin_escondido<?php echo $_SESSION['id_utilizador']?>" value="" style="display:none">
                                     <div class="form-group">
                                         <label class="col-lg-5 control-label">Nome completo:</label>
-                                        <input readonly class="form-control" id="nome_funcionario" name="nome_funcionario" type="text" value="<?php echo $row['nome'];?>">
+                                        <input readonly class="form-control" id="nome_funcionario" name="nome_funcionario" type="text" value="<?php echo utf8_encode($row['nome']);?>">
                                     </div>
 
                                     <div class="form-group">
@@ -122,7 +122,13 @@ include ($_SERVER['DOCUMENT_ROOT']."/acesso_bd.php"); //script de acesso à base
 
                                     <div class="form-group">
                                         <label class="col-lg-5 control-label">Função:</label>
-                                        <input readonly class="form-control" type="text" id="funcao_funcionario" name="funcao_funcionario" value="<?php echo $row['funcao'];?>">
+                                        <input readonly class="form-control" type="text" id="funcao_funcionario" name="funcao_funcionario" value="<?php
+                                            $sql_1 = "SELECT funcao FROM codigo_vencimento WHERE codigo_vencimento.idcodigo_vencimento='".$row['funcao']."'";
+                                            $result_1 = mysqli_query($link,$sql_1);
+                                            while($row_1 = mysqli_fetch_array($result_1)) {
+                                                echo utf8_encode($row_1['funcao']);
+                                            }
+                                        ?>">
                                     </div>
 
                                     <div class="form-group">

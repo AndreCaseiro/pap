@@ -80,6 +80,26 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
         	          	    </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Utilizador</label>
+                            <div class="col-sm-7">
+                            <select id="idutilizador" name="idutilizador" required="required" class="form-control">
+                                	<option value="" style="display:none">Escolha uma opção</option>
+                                        <?php
+                                 $select = "SELECT
+                                 idlogin,
+                                 utilizador
+                                 FROM
+                                 utilizadores" ;
+                                 $resultado = mysqli_query($link, $select);
+                                 while ($linha=mysqli_fetch_array($resultado))
+                                 {
+                                  echo '<option value="'.$linha["idlogin"].'">'.utf8_encode($linha["utilizador"]).'</option>';
+                              };
+                              ?>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Data de Nascimento </label>
                             <div class="col-sm-7">
                                 <input class="form-control" type="date" name="datanascimento"  value="<?php echo $datanascimento; ?>"required>
