@@ -99,7 +99,7 @@ include($_SERVER['DOCUMENT_ROOT']."/administracao/menu.php");
                         }
                         ?>
                             <form action="" method="post">
-                            <input type="text" name="valorPesquisar" placeholder="Pesquise um utilizador">
+                            <input type="text" name="valorPesquisar" placeholder=" Pesquise um utilizador">
                             <input type="submit" name="pesquisar" value="Pesquisar"></a>
                             <br>
                             <br>
