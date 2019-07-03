@@ -22,6 +22,7 @@ $select = "SELECT
 			FROM
 				utilizadores
 			WHERE utilizadores.utilizador ='".$_POST['utilizador']. "'
+			AND utilizadores.eliminado = 0
 			LIMIT 1" ;
 
 $resultado = mysqli_query($conn, $select);
@@ -62,6 +63,7 @@ else
 							utilizadores
 						WHERE utilizadores.utilizador ='".$_POST['utilizador']. "'
 						AND utilizadores.password =PASSWORD('".$_POST['password']. "')
+						AND utilizadores.eliminado = 0
 						LIMIT 1" ;
 			$resultado = mysqli_query($conn, $select);
 

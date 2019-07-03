@@ -82,7 +82,7 @@ session_start(); //para utilizar "session" tem de estar aqui no topo e em todos 
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
                             <?php
                         if (isset($_SESSION['utilizador_nao_existe'])) {
-                            echo '<p style="color:#900">Utilizador não registado!</p>';
+                            echo '<p style="color:#900">Utilizador não está registado ou encontra-se inativo!</p>';
                             unset($_SESSION["utilizador_nao_existe"]);
                         }
                         if (isset($_SESSION['tentativas_zero'])) {
